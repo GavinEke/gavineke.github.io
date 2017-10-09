@@ -1,0 +1,17 @@
+# Site settings
+title: Gavin Eke
+description: Gavin Eke
+url: "http://gavineke.com"
+baseurl: /
+
+# User settings
+username: Gavin Eke
+user_title: System Administrator
+twitter_username: gavineke
+github_username: gavineke
+
+# Google-analytics
+google-analytics:
+  id: "UA-98430810-4"
+
+exclude: ['package.json', 'src' , 'node_modules']
