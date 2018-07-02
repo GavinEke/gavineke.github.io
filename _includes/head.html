@@ -1,7 +1,12 @@
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Security-Policy-Report-Only" content="default-src 'self'; script-src cdn.report-uri.com; style-src 'self' fonts.googleapis.com; font-src fonts.gstatic.com; connect-src gavineke.report-uri.com; upgrade-insecure-requests">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script type="text/json" id="csp-report-uri">
+    {"keys" : ["blockedURI", "columnNumber", "disposition", "documentURI", "effectiveDirective", "lineNumber", "originalPolicy", "referrer", "sample", "sourceFile", "statusCode", "violatedDirective"], "reportUri" : "https://gavineke.report-uri.com/r/d/csp/enforce"}
+  </script>
+  <script src="https://cdn.report-uri.com/libs/report-uri-js/1.0.1/report-uri-js.min.js" integrity="sha256-Cng8gUe98XCqh5hc8nAM3y5I1iQHBjzOl8X3/iAd4jE=" crossorigin="anonymous"></script>
 
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
