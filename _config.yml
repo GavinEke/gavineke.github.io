@@ -2,11 +2,14 @@
 title: Gavin Eke
 description: Gavin Eke
 baseurl: /
+url: "https://gavineke.com/"
+enforce_ssl: gavineke.com
 
 # User settings
 username: Gavin Eke
-user_title: IT Infrastructure Administrator
+user_title: Cloud Infrastructure Specialist
 twitter_username: gavineke
+linkedin_username: gavineke
 github_username: gavineke
 
 # Google-analytics
