@@ -7,11 +7,11 @@ enforce_ssl: gavineke.com
 
 # User settings
 username: Gavin Eke
-user_description: Cloud Infrastructure Specialist
 user_title: Cloud Infrastructure Specialist
 twitter_username: gavineke
 linkedin_username: gavineke
 github_username: gavineke
+blog: "https://scripting.rocks/"
 
 # Google-analytics
 google-analytics:
@@ -19,4 +19,3 @@ google-analytics:
 
 # Other
 exclude: ['package.json', 'src' , 'node_modules']
-remote_theme: GavinEke/GavinEkeComTheme
