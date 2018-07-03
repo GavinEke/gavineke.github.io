@@ -1,5 +1,6 @@
 <head>
   <meta charset="utf-8">
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
   
   <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
   <meta property="og:locale" content="en_US" />
@@ -16,7 +17,6 @@
   </script>
   <script src="//cdn.report-uri.com/libs/report-uri-js/1.0.1/report-uri-js.min.js" integrity="sha256-Cng8gUe98XCqh5hc8nAM3y5I1iQHBjzOl8X3/iAd4jE=" crossorigin="anonymous"></script>
 
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css">
