@@ -19,4 +19,4 @@ google-analytics:
 
 # Other
 exclude: ['package.json', 'src' , 'node_modules']
-remote_theme: GavinEke/ScriptingRocksTheme
+remote_theme: GavinEke/GavinEkeComTheme
