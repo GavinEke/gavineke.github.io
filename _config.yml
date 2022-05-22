@@ -13,9 +13,5 @@ linkedin_username: gavineke
 github_username: gavineke
 blog: "https://scripting.rocks/"
 
-# Google-analytics
-google-analytics:
-  id: "UA-98430810-4"
-
 # Other
 exclude: ['package.json', 'src' , 'node_modules']
