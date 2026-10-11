@@ -1,0 +1,61 @@
+---
+import { experience } from '../data/site';
+---
+
+<section class="section alt" id="experience" aria-labelledby="experience-title">
+  <div class="container">
+    <p class="eyebrow">02 / experience</p>
+    <h2 class="section-title" id="experience-title">Experience</h2>
+    <ol class="timeline">
+      {
+        experience.map((e) => (
+          <li class="card">
+            <div class="head">
+              <h3>{e.role}</h3>
+              <p class="period">{e.period}</p>
+            </div>
+            <p class="company">{e.company}</p>
+            <p class="summary">{e.summary}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .alt {
+    background: var(--surface-2);
+    border-block: 1px solid var(--border);
+  }
+  .timeline {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+  .period {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .company {
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+  .summary {
+    margin-top: 0.75rem;
+    color: var(--muted);
+  }
+</style>

@@ -1,0 +1,48 @@
+---
+import { about } from '../data/site';
+---
+
+<section class="section" id="about" aria-labelledby="about-title">
+  <div class="container">
+    <p class="eyebrow">01 / about</p>
+    <h2 class="section-title" id="about-title">About me</h2>
+    <div class="grid">
+      <div class="copy">
+        {about.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+      <div>
+        <h3 class="skills-title">Focus areas</h3>
+        <ul class="skills">
+          {about.skills.map((s) => <li class="tag">{s}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .copy {
+    display: grid;
+    gap: 1rem;
+    color: var(--muted);
+    max-width: 40rem;
+  }
+  .skills-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  @media (min-width: 52rem) {
+    .grid {
+      grid-template-columns: 3fr 2fr;
+    }
+  }
+</style>

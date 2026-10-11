@@ -1,0 +1,90 @@
+---
+import { site, socials } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="container inner">
+    <p class="eyebrow"><span aria-hidden="true">$ </span>whoami</p>
+    <h1 id="hero-title">
+      {site.name}
+      <span class="role">{site.title}</span>
+    </h1>
+    <p class="lead">{site.description}</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#projects">View my work</a>
+      <a class="btn" href={site.blog} rel="noopener">Read the blog</a>
+    </div>
+    <ul class="social" aria-label="Social links">
+      {
+        socials.map((s) => (
+          <li>
+            <a href={s.href} rel="me noopener" aria-label={s.label} title={s.label}>
+              <Icon name={s.icon} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    display: grid;
+    align-items: center;
+    min-height: min(46rem, 85svh);
+    padding-block: 4rem;
+    background-image:
+      radial-gradient(60rem 30rem at 15% 0%, var(--glow), transparent 70%),
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: auto, 3rem 3rem, 3rem 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h1 {
+    font-size: clamp(2.75rem, 1.5rem + 6vw, 5.5rem);
+    font-weight: 800;
+  }
+  .role {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.4em;
+    font-weight: 500;
+    letter-spacing: 0;
+    font-family: var(--font-mono);
+    color: var(--accent);
+  }
+  .lead {
+    max-width: 38rem;
+    margin-top: 1.5rem;
+    color: var(--muted);
+    font-size: 1.15em;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .social {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  .social a {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .social a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+</style>
