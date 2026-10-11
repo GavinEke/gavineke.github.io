@@ -1,4 +1,3 @@
-Contact: https://linkedin.com/in/gavineke
-Expires: 2027-10-11T00:00:00.000Z
+Contact: https://github.com/GavinEke/security.txt
+Expires: 2038-01-19T03:14:00Z
 Preferred-Languages: en
-Canonical: https://gavineke.com/.well-known/security.txt

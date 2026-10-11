@@ -15,7 +15,7 @@ Requires Node 22.12 or newer.
 
 ## Edit content
 
-All copy, links, experience and projects live in [src/data/site.ts](src/data/site.ts). Entries marked `placeholder` need real content.
+Name, title and links live in [src/data/site.ts](src/data/site.ts).
 
 ## Deploy
 

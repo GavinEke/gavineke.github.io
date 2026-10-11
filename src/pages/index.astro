@@ -1,22 +1,35 @@
 ---
 import Base from '../layouts/Base.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Experience from '../components/Experience.astro';
-import Projects from '../components/Projects.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import { site, socials } from '../data/site';
 ---
 
 <Base>
-  <Header />
-  <main id="main">
-    <Hero />
-    <About />
-    <Experience />
-    <Projects />
-    <Contact />
+  <main>
+    <div class="term">
+      <div class="bar" aria-hidden="true">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="bar-title">gavin@emdashcyber:~</span>
+      </div>
+      <div class="content">
+        <p class="prompt" aria-hidden="true">$ whoami</p>
+        <h1>{site.name}</h1>
+        <p class="role">{site.title}<span class="cursor" aria-hidden="true"></span></p>
+        <nav aria-label="Links">
+          <ul class="links">
+            {
+              socials.map((s) => (
+                <li>
+                  <a class="link" href={s.href} rel="me noopener">
+                    <Icon name={s.icon} />
+                    {s.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+    </div>
   </main>
-  <Footer />
 </Base>

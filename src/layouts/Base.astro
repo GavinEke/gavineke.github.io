@@ -1,6 +1,5 @@
 ---
 import '@fontsource-variable/inter';
-import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
 import { site, socials } from '../data/site';
 
@@ -11,6 +10,8 @@ interface Props {
 }
 
 const { title, description = site.description, noindex = false } = Astro.props;
+// aurora | blue | neon | shield | ember. In dev, ?palette=name previews without editing.
+const palette = 'aurora';
 const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.title}`;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL('/og-image.png', site.url).href;
@@ -25,7 +26,7 @@ const jsonLd = {
   sameAs: socials.map((s) => s.href),
 };
 
-// Meta CSP: GitHub Pages cannot send response headers.
+// Meta CSP: GitHub Pages cannot send response headers. Skipped in dev, where Vite injects inline styles and HMR scripts.
 const csp = [
   "default-src 'none'",
   "script-src 'self'",
@@ -39,18 +40,17 @@ const csp = [
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-palette={palette}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="Content-Security-Policy" content={csp} />
+    {!import.meta.env.DEV && <meta http-equiv="Content-Security-Policy" content={csp} />}
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />
-    <meta name="color-scheme" content="dark light" />
-    <meta name="theme-color" content="#0b0f14" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#f6f8fa" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#070a12" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -72,11 +72,10 @@ const csp = [
     <meta name="twitter:site" content="@gavineke" />
     <meta name="twitter:creator" content="@gavineke" />
 
-    <script is:inline src="/theme-init.js"></script>
+    {import.meta.env.DEV && <script is:inline>{`const p = new URLSearchParams(location.search).get('palette'); if (p) document.documentElement.dataset.palette = p;`}</script>}
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
     <slot />
   </body>
 </html>

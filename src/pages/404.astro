@@ -3,23 +3,22 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base title="Page not found" description="The page you are looking for does not exist." noindex>
-  <main id="main" class="container nf">
-    <p class="eyebrow">404</p>
-    <h1>Page not found</h1>
-    <p>That page does not exist or has moved.</p>
-    <p><a class="btn btn-primary" href="/">Back to home</a></p>
+  <main>
+    <div class="term">
+      <div class="bar" aria-hidden="true">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="bar-title">gavin@emdashcyber:~</span>
+      </div>
+      <div class="content">
+        <p class="prompt" aria-hidden="true">$ cat /missing</p>
+        <h1>404</h1>
+        <p class="role">Page not found<span class="cursor" aria-hidden="true"></span></p>
+        <nav aria-label="Links">
+          <ul class="links">
+            <li><a class="link" href="/">Back to home</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
   </main>
 </Base>
-
-<style>
-  .nf {
-    display: grid;
-    gap: 1rem;
-    align-content: center;
-    min-height: 100svh;
-    justify-items: start;
-  }
-  p {
-    color: var(--muted);
-  }
-</style>
