@@ -1,6 +1,7 @@
 // Single source of truth for site content.
 export const site = {
   url: 'https://gavineke.com',
+  projectsUrl: 'https://gavin.cloud/',
   name: 'Gavin Eke',
   title: 'Cyber Security Engineer',
   description: 'Gavin Eke is a cyber security engineer building secure systems and automating defence.',

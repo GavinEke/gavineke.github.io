@@ -266,9 +266,23 @@ h1 {
   color: var(--a1);
 }
 
-.link:focus-visible {
+.link:focus-visible,
+.projects a:focus-visible {
   outline: 2px solid var(--a1);
   outline-offset: 3px;
+}
+
+.projects {
+  margin: 1.5rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.projects a {
+  color: var(--a1);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .icon {
