@@ -1,7 +1,8 @@
 ---
 import '@fontsource-variable/inter';
 import '../styles/global.css';
-import { site, socials } from '../data/site';
+import { metaCsp, securityHeaders } from '../../config/security-headers.mjs';
+import { site } from '../data/site';
 
 interface Props {
   title?: string;
@@ -15,28 +16,7 @@ const palette = 'aurora';
 const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.title}`;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL('/og-image.png', site.url).href;
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: site.name,
-  jobTitle: site.title,
-  url: site.url,
-  description,
-  sameAs: socials.map((s) => s.href),
-};
-
-// Meta CSP: GitHub Pages cannot send response headers. Skipped in dev, where Vite injects inline styles and HMR scripts.
-const csp = [
-  "default-src 'none'",
-  "script-src 'self'",
-  "style-src 'self'",
-  "img-src 'self' data:",
-  "font-src 'self'",
-  "manifest-src 'self'",
-  "base-uri 'none'",
-  "form-action 'none'",
-].join('; ');
+const imageAlt = `${site.name}, ${site.title}`;
 ---
 
 <!doctype html>
@@ -44,18 +24,20 @@ const csp = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {!import.meta.env.DEV && <meta http-equiv="Content-Security-Policy" content={csp} />}
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    {import.meta.env.PROD && <meta http-equiv="Content-Security-Policy" content={metaCsp} />}
+    <meta name="referrer" content={securityHeaders['Referrer-Policy']} />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#070a12" />
-    {noindex && <meta name="robots" content="noindex" />}
-    <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="robots" content={noindex ? 'noindex' : 'max-image-preview:large'} />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    <link rel="icon" href="/favicon.ico" sizes="16x16 24x24 32x32 64x64" />
+    <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta property="og:type" content="website" />
@@ -63,17 +45,18 @@ const csp = [
     <meta property="og:locale" content="en_GB" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
+    {!noindex && <meta property="og:url" content={canonical} />}
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={`${site.name}, ${site.title}`} />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@gavineke" />
     <meta name="twitter:creator" content="@gavineke" />
 
     {import.meta.env.DEV && <script is:inline>{`const p = new URLSearchParams(location.search).get('palette'); if (p) document.documentElement.dataset.palette = p;`}</script>}
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <slot name="head" />
   </head>
   <body>
     <slot />

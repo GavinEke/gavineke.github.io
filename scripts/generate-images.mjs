@@ -5,6 +5,9 @@ import { readFile } from 'node:fs/promises';
 const favicon = await readFile('public/favicon.svg');
 await sharp(favicon).resize(180, 180).png().toFile('public/apple-touch-icon.png');
 await sharp(favicon).resize(32, 32).png().toFile('public/favicon.png');
+for (const size of [192, 512]) {
+  await sharp(favicon).resize(size, size).png().toFile(`public/icon-${size}.png`);
+}
 
 const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>

@@ -1,10 +1,26 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import { site, socials } from '../data/site';
+import { profiles, site, socials } from '../data/site';
+
+const profile = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  url: site.url,
+  mainEntity: {
+    '@type': 'Person',
+    '@id': `${site.url}/#gavin-eke`,
+    name: site.name,
+    jobTitle: site.title,
+    url: site.url,
+    description: site.description,
+    sameAs: profiles.map((profile) => profile.href),
+  },
+};
 ---
 
 <Base>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(profile).replace(/</g, '\\u003c')} />
   <main>
     <div class="term">
       <div class="bar" aria-hidden="true">

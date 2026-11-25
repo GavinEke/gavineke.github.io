@@ -9,8 +9,14 @@ export const site = {
 
 export type SocialIcon = 'github' | 'linkedin' | 'emdash';
 
-export const socials: { label: string; href: string; icon: SocialIcon }[] = [
+type SocialLink = { label: string; href: string; icon: SocialIcon };
+
+export const profiles: SocialLink[] = [
   { label: 'GitHub', href: 'https://github.com/gavineke', icon: 'github' },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/gavineke', icon: 'linkedin' },
+];
+
+export const socials: SocialLink[] = [
+  ...profiles,
   { label: 'EmDash Cyber', href: 'https://emdashcyber.com/', icon: 'emdash' },
 ];
