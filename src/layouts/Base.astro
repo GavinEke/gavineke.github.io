@@ -1,7 +1,6 @@
 ---
 import '@fontsource-variable/inter';
 import '../styles/global.css';
-import { metaCsp, securityHeaders } from '../../config/security-headers.mjs';
 import { site } from '../data/site';
 
 interface Props {
@@ -17,6 +16,20 @@ const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.tit
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL('/og-image.png', site.url).href;
 const imageAlt = `${site.name}, ${site.title}`;
+const metaCsp = [
+  "default-src 'none'",
+  "base-uri 'none'",
+  "form-action 'none'",
+  "object-src 'none'",
+  "script-src 'self' https://static.cloudflareinsights.com",
+  "style-src 'self'",
+  "img-src 'self'",
+  "font-src 'self'",
+  "manifest-src 'self'",
+  "connect-src 'self' https://cloudflareinsights.com",
+  "worker-src 'none'",
+  "upgrade-insecure-requests",
+].join('; ');
 ---
 
 <!doctype html>
@@ -25,7 +38,7 @@ const imageAlt = `${site.name}, ${site.title}`;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {import.meta.env.PROD && <meta http-equiv="Content-Security-Policy" content={metaCsp} />}
-    <meta name="referrer" content={securityHeaders['Referrer-Policy']} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />
