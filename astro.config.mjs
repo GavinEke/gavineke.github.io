@@ -15,7 +15,6 @@ export default defineConfig({
           await Promise.all([
             copyFile(new URL('sitemap-index.xml', dir), new URL('sitemap.xml', dir)),
             copyFile(new URL('site.webmanifest', dir), new URL('manifest.json', dir)),
-            copyFile(new URL('.well-known/security.txt', dir), new URL('security.txt', dir)),
           ]);
         },
       },
